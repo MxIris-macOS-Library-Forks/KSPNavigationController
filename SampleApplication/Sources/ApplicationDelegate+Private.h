@@ -8,7 +8,7 @@
 
 #import "ApplicationDelegate.h"
 
-@import KSPNavigationController.KSPNavigationControllerDelegate;
+@import KSPNavigationController;
 
 @interface ApplicationDelegate () <KSPNavigationControllerDelegate>
 

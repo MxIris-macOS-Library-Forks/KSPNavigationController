@@ -3,9 +3,4 @@ framework module KSPNavigationController
   umbrella header "KSPNavigationControllerFramework.h"
 
   export *
-
-  module *
-  {
-    export *
-  }
 }

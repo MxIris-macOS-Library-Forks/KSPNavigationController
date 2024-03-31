@@ -7,7 +7,7 @@
 //
 
 #import "KSPBackButtonCell.h"
-
+#import "NSBundle+Current.h"
 // * * *.
 
 static NSImage* arrowDisabled;
@@ -24,11 +24,11 @@ static NSImage *arrowHighlighted;
 
 + (void) initialize
 {
-  arrowDisabled = [[NSBundle bundleForClass: self] imageForResource: @"Arrow-disabled"];
+  arrowDisabled = [[NSBundle currentBundle] imageForResource: @"Arrow-disabled"];
   
-  arrowNormal = [[NSBundle bundleForClass: self] imageForResource: @"Arrow-normal"];
+  arrowNormal = [[NSBundle currentBundle] imageForResource: @"Arrow-normal"];
   
-  arrowHighlighted = [[NSBundle bundleForClass: self] imageForResource: @"Arrow-highlighted"];
+  arrowHighlighted = [[NSBundle currentBundle] imageForResource: @"Arrow-highlighted"];
 }
 
 #pragma mark - NSCell Overrides
@@ -50,16 +50,16 @@ static NSImage *arrowHighlighted;
   {
     if(self.isHighlighted)
     {
-      [arrowHighlighted drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositeSourceOver fraction: 1];
+        [arrowHighlighted drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositingOperationSourceOver fraction: 1];
     }
     else
     {
-      [arrowNormal drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositeSourceOver fraction: 1];
+        [arrowNormal drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositingOperationSourceOver fraction: 1];
     }
   }
   else
   {
-    [arrowDisabled drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositeSourceOver fraction: 1];
+      [arrowDisabled drawAtPoint: NSMakePoint(0, 1) fromRect: r operation: NSCompositingOperationSourceOver fraction: 1];
   }
 }
 

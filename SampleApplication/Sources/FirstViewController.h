@@ -6,8 +6,20 @@
 //  Copyright © 2016 Konstantin Pavlikhin. All rights reserved.
 //
 
-@import KSPNavigationController.KSPNavViewController_Private;
+@import KSPNavigationController;
 
-@interface FirstViewController : KSPNavViewController
+@interface FirstViewController : NSViewController<KSPNavigableViewController>
+
+@property(readwrite, weak, nonatomic) KSPNavigationController* navigationController;
+
+@property(readwrite, strong, nonatomic) IBOutlet NSButton* backButton;
+
+@property(readwrite, strong, nonatomic) IBOutlet NSView* leftNavigationBarView;
+
+@property(readwrite, strong, nonatomic) IBOutlet NSView* centerNavigationBarView;
+
+@property(readwrite, strong, nonatomic) IBOutlet NSView* rightNavigationBarView;
+
+@property(readwrite, strong, nonatomic) IBOutlet NSView* navigationToolbar;
 
 @end

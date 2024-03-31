@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+@protocol KSPNavigableViewController;
 
-@class KSPNavigationController, KSPNavViewController;
+@class KSPNavigationController;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol KSPNavigationControllerDelegate <NSObject>
 
 @optional
 
-- (void) navigationController: (KSPNavigationController*) navigationController willShowViewController: (KSPNavViewController*) viewController animated: (BOOL) animated;
+- (void)navigationController:(KSPNavigationController *)navigationController willShowViewController:(NSViewController<KSPNavigableViewController> *)viewController animated:(BOOL)animated;
 
-- (void) navigationController: (KSPNavigationController*) navigationController didShowViewController: (KSPNavViewController*) viewController animated: (BOOL) animated;
+- (void)navigationController:(KSPNavigationController *)navigationController didShowViewController:(NSViewController<KSPNavigableViewController> *)viewController animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END

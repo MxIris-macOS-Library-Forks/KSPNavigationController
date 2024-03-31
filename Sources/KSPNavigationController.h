@@ -1,63 +1,59 @@
-#import "KSPViewController+Private.h"
+#import <AppKit/AppKit.h>
 
-// * * *.
-
-typedef NS_ENUM(NSUInteger, KSPNavigationControllerTransitionStyle)
-{
-  KSPNavigationControllerTransitionStyleLengthy,
-  
-  KSPNavigationControllerTransitionStyleShort
-};
-
-// * * *.
+typedef NS_ENUM(NSUInteger, KSPNavigationControllerTransitionStyle) {
+    KSPNavigationControllerTransitionStyleLengthy,
+    KSPNavigationControllerTransitionStyleShort
+} NS_SWIFT_NAME(KSPNavigationController.TransitionStyle);
 
 @class KSPHitTestView;
 
-@class KSPNavViewController;
+@protocol KSPNavigableViewController;
 
 @protocol KSPNavigationControllerDelegate;
 
-// * * *.
+NS_ASSUME_NONNULL_BEGIN
 
-@interface KSPNavigationController : KSPViewController
+@interface KSPNavigationController : NSViewController
 
-@property(readonly, strong, nonatomic) IBOutlet KSPHitTestView* navigationBar;
+@property (nonatomic, strong, readonly) IBOutlet KSPHitTestView *navigationBar;
 
 /// KSPNavigationControllerTransitionStyleLengthy by default.
-@property(readwrite, assign, nonatomic) KSPNavigationControllerTransitionStyle transitionStyle;
+@property (nonatomic, assign) KSPNavigationControllerTransitionStyle transitionStyle;
 
 /// 1/2 of a second by default.
-@property(readwrite, assign, nonatomic) CFTimeInterval transitionDuration;
+@property (nonatomic, assign) CFTimeInterval transitionDuration;
 
 /// 24 points by default.
-@property(readonly, strong, nonatomic) IBOutlet NSLayoutConstraint* navigationToolbarHostHeight;
+@property (nonatomic, strong, readonly) IBOutlet NSLayoutConstraint *navigationToolbarHostHeight;
 
 #pragma mark - Accessing the Delegate
 
-@property(readwrite, weak, nonatomic) id<KSPNavigationControllerDelegate> delegate;
+@property (nonatomic, weak, nullable) id<KSPNavigationControllerDelegate> delegate;
 
 #pragma mark - Creating Navigation Controllers
 
-- (instancetype) initWithNavigationBar: (NSView*) navigationBar rootViewController: (KSPNavViewController*) rootViewControllerOrNil NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNavigationBar:(NSView *)navigationBar rootViewController:(nullable NSViewController<KSPNavigableViewController> *)rootViewControllerOrNil NS_DESIGNATED_INITIALIZER;
 
-- (instancetype) initWithNibName: (NSString*) nibNameOrNil bundle: (NSBundle*) nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
+- (instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (instancetype) initWithCoder: (NSCoder*) coder UNAVAILABLE_ATTRIBUTE;
+- (nullable instancetype)initWithCoder:(NSCoder *)coder UNAVAILABLE_ATTRIBUTE;
 
 #pragma mark - Accessing Items on the Navigation Stack
 
-@property(readonly, strong, nonatomic) KSPNavViewController* topViewController;
+@property (nonatomic, strong, readonly, nullable) NSViewController<KSPNavigableViewController> *topViewController;
 
 #pragma mark - Pushing and Popping Stack Items
 
-- (void) setViewControllers: (NSArray*) newViewControllers animated: (BOOL) animated;
+- (void)setViewControllers:(NSArray<NSViewController<KSPNavigableViewController> *> *)newViewControllers animated:(BOOL)animated;
 
-- (void) pushViewController: (KSPNavViewController*) viewController animated: (BOOL) animated;
+- (void)pushViewController:(NSViewController<KSPNavigableViewController> *)viewController animated:(BOOL)animated;
 
-- (KSPNavViewController*) popViewControllerAnimated: (BOOL) animated;
+- (nullable NSViewController<KSPNavigableViewController> *)popViewControllerAnimated:(BOOL)animated;
 
-- (NSArray*) popToRootViewControllerAnimated: (BOOL) animated;
+- (NSArray<NSViewController<KSPNavigableViewController> *> *)popToRootViewControllerAnimated:(BOOL)animated;
 
-- (NSArray*) popToViewController: (KSPNavViewController*) viewController animated: (BOOL) animated;
+- (NSArray<NSViewController<KSPNavigableViewController> *> *)popToViewController:(NSViewController<KSPNavigableViewController> *)viewController animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END

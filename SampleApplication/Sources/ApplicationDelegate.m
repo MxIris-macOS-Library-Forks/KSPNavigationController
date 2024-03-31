@@ -8,7 +8,7 @@
 
 #import "ApplicationDelegate+Private.h"
 
-@import KSPNavigationController.KSPNavigationController;
+@import KSPNavigationController;
 
 #import "FirstViewController.h"
 

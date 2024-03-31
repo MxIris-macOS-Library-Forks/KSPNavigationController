@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KSPViewController : NSViewController
+@interface NSViewController (KSPNavigationController)
 
-@property(readonly, strong, nonatomic) IBOutlet NSView* proposedFirstResponder;
+@property(readwrite, strong, nonatomic) NSView* proposedFirstResponder;
 
 @end
